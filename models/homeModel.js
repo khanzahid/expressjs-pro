@@ -4,10 +4,11 @@ const path = require("path");
 const rootDir = require("../utils/pathUtil");
 const db = require("../utils/dbConfig");
 module.exports = class HomeModel {
-  constructor(title, img_url, price) {
+  constructor(title, img_url, price, id) {
     this.title = title;
     this.img_url = img_url;
     this.price = price;
+    this.id = id;
   }
 
   // insert to db mysql
@@ -37,5 +38,9 @@ module.exports = class HomeModel {
   // from db
   static fetchAll() {
     return db.execute("SELECT * FROM `products`");
+  }
+
+  static homeFindById(homeId) {
+    return db.execute("SELECT * FROM `products` WHERE id = ?", [homeId]);
   }
 };

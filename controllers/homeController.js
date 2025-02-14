@@ -3,9 +3,20 @@ const path = require("path");
 const HomeModel = require("../models/HomeModel");
 let getApiData = require("../data/homes.json");
 const rootDir = require("../utils/pathUtil");
-exports.getHome = (req, res, next) => {
-  res.render("home", { pageTitle: "Home Page" });
+
+exports.getHomes = (req, res, next) => {
+  HomeModel.fetchAll().then( ([registeredHomes]) =>{
+    res.render("home", {
+      registeredHomes: registeredHomes,
+      pageTitle: "Homes List",
+      currentPage: "Home",
+    }) } )
+      .catch((err) => console.log(err));
 };
+
+// exports.getHome = (req, res, next) => {
+//   res.render("home", { pageTitle: "Home Page" });
+// };
 
 exports.getApiJson = (req, res, next) => {
   return res.json(getApiData);
@@ -40,12 +51,15 @@ exports.postContact = (req, res, next) => {
   });
 };
 
-exports.getHomes = (req, res, next) => {
-  HomeModel.fetchAll().then( (registeredHomes) =>{
-  res.render("home", {
-    registeredHomes: registeredHomes,
-    pageTitle: "Homes List",
-    currentPage: "Home",
-  }) } )
-  .catch((err) => console.log(err));
+exports.getHomeDetail = (req, res, next) => {
+  const id = req.params.id;
+  console.log("detail",id);
+  HomeModel.homeFindById(id).then(([home]) => {
+    res.render("homeDetail", {
+      home: home[0],
+      pageTitle: "Home Detail",
+      currentPage: "homeDetail",
+    });
+  });
+
 };
