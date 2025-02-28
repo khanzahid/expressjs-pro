@@ -5,7 +5,7 @@ const homeController = require("../controllers/homeController");
 
 const userRouter = express.Router();
 
-// userRouter.get("/", homeController.getHome);
+userRouter.get("/", homeController.getHome);
 userRouter.get("/", homeController.getHomes);
 userRouter.get("/api/getdata", homeController.getApiJson);
 userRouter.post("/api/getdata", homeController.postApiJson);
