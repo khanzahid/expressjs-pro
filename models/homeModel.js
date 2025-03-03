@@ -28,12 +28,12 @@ module.exports = class HomeModel {
   //     });
   //   });
   // }
-  // static fetchAll(callback) {
-  //   const homeDataPath = path.join(rootDir, "data", "homes.json");
-  //   fs.readFile(homeDataPath, (err, data) => {
-  //     callback(!err ? JSON.parse(data) : []);
-  //   });
-  // }
+   static fetchAllOld(callback) {
+     const homeDataPath = path.join(rootDir, "data", "homes.json");
+     fs.readFile(homeDataPath, (err, data) => {
+       callback(!err ? JSON.parse(data) : []);
+     });
+   }
 
   // from db
   static fetchAll() {
