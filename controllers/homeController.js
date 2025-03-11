@@ -14,9 +14,9 @@ exports.getHomes = (req, res, next) => {
       .catch((err) => console.log(err));
 };
 
-// exports.getHome = (req, res, next) => {
-//   res.render("home", { pageTitle: "Home Page" });
-// };
+ exports.getHome = (req, res, next) => {
+  res.render("home", { pageTitle: "Home Page" });
+};
 
 exports.getApiJson = (req, res, next) => {
   return res.json(getApiData);
