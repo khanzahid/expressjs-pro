@@ -28,7 +28,7 @@ module.exports = class HomeModel {
   //     });
   //   });
   // }
-   static fetchAllOld(callback) {
+   static fetchAll_Old(callback) {
      const homeDataPath = path.join(rootDir, "data", "homes.json");
      fs.readFile(homeDataPath, (err, data) => {
        callback(!err ? JSON.parse(data) : []);
